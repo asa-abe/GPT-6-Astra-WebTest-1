@@ -1,0 +1,42 @@
+---
+import Arrow from './Arrow.astro';
+import type { LandingContent } from '../data/landing';
+interface Props {
+  data: LandingContent['hero'];
+}
+const { data } = Astro.props;
+---
+
+<section class="hero section-shell" id="hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="eyebrow">
+      <span class="status-dot"></span>
+      {data.eyebrow}
+    </p>
+    <h1 id="hero-title">
+      {data.title[0]}
+      <br />
+      <span>{data.title[1]}</span>
+    </h1>
+    <p class="hero-description line-breaks">{data.description}</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href={data.primary.href}>
+        {data.primary.label}
+        <Arrow diagonal />
+      </a>
+      <a class="text-link" href={data.secondary.href}>
+        {data.secondary.label}
+        <Arrow />
+      </a>
+    </div>
+    <p class="hero-signature" aria-hidden="true">
+      Beyond the ordinary<span>.</span>
+    </p>
+  </div>
+  <div class="hero-bottom mono" aria-hidden="true">
+    <span>
+      <span class="scroll-line"></span>SCROLL TO EXPLORE
+    </span>
+    <span>DESIGNED TO MOVE YOU.</span>
+  </div>
+</section>

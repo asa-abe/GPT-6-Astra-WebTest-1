@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import Arrow from './Arrow.astro';
+import type { LandingContent } from '../data/landing';
+interface Props {
+  data: LandingContent['work'];
+  labels: LandingContent['labels'];
+}
+const { data, labels } = Astro.props;
+---
+
+<section
+  class="work section-shell section-space"
+  id="work"
+  aria-labelledby="work-title"
+>
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">{data.eyebrow}</p>
+      <h2 class="section-title" id="work-title">
+        {data.title}
+      </h2>
+    </div>
+    <p class="section-intro line-breaks">{data.description}</p>
+  </div>
+  <div class="work-grid">
+    {data.items.map((item, index) => (
+      <article class="work-card" id={item.id}>
+        <div class="work-image-wrap">
+          <Image
+            src={item.image}
+            alt={item.alt}
+            widths={[480, 800, 1200, 1600]}
+            sizes="(max-width: 760px) 100vw, 55vw"
+            width={1600}
+            height={1100}
+            loading="lazy"
+            decoding="async"
+            class="work-image"
+          />
+          <span class="work-image-index mono" aria-hidden="true">
+            EXPLORATION — 0{index + 1}
+          </span>
+          <span class="work-image-symbol" aria-hidden="true">
+            ↗
+          </span>
+        </div>
+        <div class="work-meta">
+          <p class="tiny-label">{item.category}</p>
+          {item.kind === 'concept' && (
+            <span class="concept-label">{labels.concept}</span>
+          )}
+        </div>
+        <h3>{item.name}</h3>
+        <p class="work-description">{item.description}</p>
+        <ul class="tag-list">
+          {item.tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+        <details class="work-details">
+          <summary>
+            {labels.projectDetails}
+            <span class="details-icon" aria-hidden="true"></span>
+          </summary>
+          <dl>
+            {(['challenge', 'approach', 'outcome', 'role'] as const).map(
+              (key) => (
+                <div>
+                  <dt>{labels[key]}</dt>
+                  <dd>{item[key]}</dd>
+                </div>
+              ),
+            )}
+          </dl>
+        </details>
+      </article>
+    ))}
+  </div>
+  <a class="work-cta text-link" href="#contact">
+    {labels.consult}
+    <Arrow diagonal />
+  </a>
+</section>

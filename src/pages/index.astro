@@ -1,0 +1,48 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Core from '../components/Core.astro';
+import Technology from '../components/Technology.astro';
+import Work from '../components/Work.astro';
+import Process from '../components/Process.astro';
+import Faq from '../components/Faq.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { landing } from '../data/landing';
+import { publication } from '../data/publication';
+import { validateContent } from '../data/validate';
+validateContent(landing, publication);
+---
+
+<LandingLayout data={landing} publication={publication}>
+  <Header data={landing} preview={publication.mode === 'preview'} />
+  <main id="main" tabindex="-1">
+    <div class="experience-story" data-story>
+      <Hero data={landing.hero} />
+      <Core data={landing} />
+      <Technology
+        data={landing.technology}
+        selectLabel={landing.labels.selectPart}
+      />
+    </div>
+    <div class="discipline-strip mono" aria-hidden="true">
+      <span>REALTIME 3D</span>
+      <span>✳</span>
+      <span>CREATIVE DEVELOPMENT</span>
+      <span>✳</span>
+      <span>DIGITAL EXPERIENCES</span>
+      <span>✳</span>
+      <span>BUILT TO LAST</span>
+    </div>
+    <Work data={landing.work} labels={landing.labels} />
+    <Process data={landing.process} />
+    <Faq data={landing.faq} />
+    <Contact
+      data={landing.contact}
+      labels={landing.labels}
+      publication={publication}
+    />
+  </main>
+  <Footer data={landing} publication={publication} />
+</LandingLayout>

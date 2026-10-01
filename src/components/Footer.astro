@@ -1,0 +1,49 @@
+---
+import Arrow from './Arrow.astro';
+import type { LandingContent } from '../data/landing';
+import type { Publication } from '../data/validate';
+interface Props {
+  data: LandingContent;
+  publication: Publication;
+}
+const { data, publication } = Astro.props;
+---
+
+<footer class="site-footer section-shell">
+  <div class="footer-top">
+    <a class="brand" href="#hero">
+      {data.brand}
+      <span class="brand-period">®</span>
+    </a>
+    <p class="mono">DESIGN MEETS ENGINEERING.</p>
+    <a href="#hero" class="back-top" aria-label={data.labels.back}>
+      <Arrow diagonal />
+    </a>
+  </div>
+  <details id="privacy" class="privacy">
+    <summary>
+      {data.privacy.title}
+      <span class="details-icon" aria-hidden="true"></span>
+    </summary>
+    <div>
+      {data.privacy.paragraphs.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+      <p>
+        運営者：{publication.operator || '未確定（コンセプトプレビュー）'}
+        <br />
+        更新日：
+        <time datetime={data.privacy.updated}>{data.privacy.updated}</time>
+      </p>
+    </div>
+  </details>
+  <div class="footer-bottom mono">
+    <span>
+      © {new Date().getUTCFullYear()} {data.brand}.{' '}
+      {publication.mode === 'preview'
+        ? 'CONCEPT PROJECT.'
+        : 'ALL RIGHTS RESERVED.'}
+    </span>
+    <span>BUILT WITH INTENTION.</span>
+  </div>
+</footer>

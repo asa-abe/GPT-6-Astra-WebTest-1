@@ -1,0 +1,56 @@
+---
+import Arrow from './Arrow.astro';
+import type { LandingContent } from '../data/landing';
+interface Props {
+  data: LandingContent;
+  preview: boolean;
+}
+const { data, preview } = Astro.props;
+---
+
+<header class="site-header">
+  <a
+    href="#hero"
+    class="brand"
+    aria-label={`${data.brand} — ${data.labels.back}`}
+  >
+    <svg aria-hidden="true" viewBox="0 0 32 32" width="28" height="28">
+      <path d="M2 28 14 4h4l12 24h-8l-6-13-6 13Z" fill="currentColor" />
+      <path d="m10 28 6-6 6 6Z" fill="currentColor" />
+    </svg>
+    <span>
+      {data.brand}
+      <span class="brand-period">®</span>
+    </span>
+  </a>
+  <span class="header-note mono">
+    {preview ? data.labels.preview : 'DESIGN × ENGINEERING'}
+  </span>
+  <nav class="desktop-nav" aria-label="メインナビゲーション">
+    {data.navigation.map((link) => (
+      <a href={link.href}>{link.label}</a>
+    ))}
+  </nav>
+  <a class="header-cta" href="#contact">
+    {data.labels.consult}
+    <Arrow diagonal />
+  </a>
+  <details class="mobile-menu" data-menu>
+    <summary aria-label={data.labels.menu}>
+      <span class="menu-lines" aria-hidden="true"></span>
+      <span class="sr-only">{data.labels.menu}</span>
+    </summary>
+    <nav aria-label="モバイルナビゲーション">
+      {data.navigation.map((link) => (
+        <a href={link.href}>
+          {link.label}
+          <Arrow diagonal />
+        </a>
+      ))}
+      <a href="#contact">
+        {data.labels.consult}
+        <Arrow diagonal />
+      </a>
+    </nav>
+  </details>
+</header>

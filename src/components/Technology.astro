@@ -1,0 +1,52 @@
+---
+import Arrow from './Arrow.astro';
+import type { LandingContent } from '../data/landing';
+interface Props {
+  data: LandingContent['technology'];
+  selectLabel: string;
+}
+const { data, selectLabel } = Astro.props;
+---
+
+<section
+  id="technology"
+  class="technology section-shell"
+  aria-labelledby="technology-title"
+>
+  <div class="technology-copy">
+    <p class="eyebrow">{data.eyebrow}</p>
+    <h2 id="technology-title" class="section-title line-breaks">
+      {data.title}
+    </h2>
+    <p class="section-intro line-breaks">{data.description}</p>
+    <div class="technology-list">
+      {data.items.map((item, index) => (
+        <article class="technology-item" data-technology={item.id}>
+          <span class="item-number mono" aria-hidden="true">
+            0{index + 1}
+          </span>
+          <div>
+            <p class="tiny-label">{item.english}</p>
+            <h3>{item.name}</h3>
+            <p class="body-copy">{item.description}</p>
+            <ul class="tag-list" aria-label={`${item.name}の技術`}>
+              {item.tags.map((tag) => (
+                <li>{tag}</li>
+              ))}
+            </ul>
+          </div>
+          <button
+            type="button"
+            class="part-button"
+            data-part={item.id}
+            aria-label={`${item.name} — ${selectLabel}`}
+            aria-pressed="false"
+            hidden
+          >
+            <Arrow diagonal />
+          </button>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

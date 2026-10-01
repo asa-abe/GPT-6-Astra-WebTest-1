@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+  <defs>
+    <radialGradient id="bg"><stop stop-color="#173934"/><stop offset="1" stop-color="#090f14"/></radialGradient>
+    <radialGradient id="orb"><stop stop-color="#92c9b1" stop-opacity=".06"/><stop offset=".7" stop-color="#9ef0d0" stop-opacity=".08"/><stop offset="1" stop-color="#9ef0d0" stop-opacity=".4"/></radialGradient>
+    <pattern id="grid" width="45" height="45" patternUnits="userSpaceOnUse"><path d="M45 0H0V45" fill="none" stroke="#9ef0d0" stroke-opacity=".08"/></pattern>
+  </defs>
+  <rect width="1600" height="1100" fill="url(#bg)"/><rect width="1600" height="1100" fill="url(#grid)"/>
+  <g transform="translate(124 127) rotate(-7 660 420)">
+    <rect x="0" y="0" width="1352" height="846" rx="16" fill="#0a1418" stroke="#5f847c" stroke-width="2"/>
+    <path d="M0 78H1352M228 78V846" stroke="#35504b"/>
+    <g font-family="sans-serif" fill="#e3eee8"><text x="35" y="49" font-size="24" letter-spacing="5">ORBIT®</text><text x="1050" y="47" font-size="14" letter-spacing="3" fill="#9ef0d0">SPATIAL EXPLORER</text></g>
+    <g fill="#87a59c" font-family="sans-serif" font-size="16" letter-spacing="2"><text x="35" y="140">WORKSPACE</text><text x="35" y="207" fill="#c9f9df">◎ OVERVIEW</text><text x="35" y="263">◌ STRUCTURE</text><text x="35" y="319">↗ CONNECTIONS</text><text x="35" y="775">CONCEPT / 01</text></g>
+    <g transform="translate(720 445)" fill="none" stroke="#9ef0d0">
+      <circle r="245" fill="url(#orb)" stroke-opacity=".6"/>
+      <ellipse rx="245" ry="72" transform="rotate(-30)" stroke-opacity=".6"/><ellipse rx="245" ry="135" transform="rotate(-30)" stroke-opacity=".6"/><ellipse rx="245" ry="195" transform="rotate(-30)" stroke-opacity=".5"/>
+      <ellipse rx="75" ry="245" transform="rotate(-30)" stroke-opacity=".7"/><ellipse rx="145" ry="245" transform="rotate(-30)" stroke-opacity=".5"/><ellipse rx="205" ry="245" transform="rotate(-30)" stroke-opacity=".4"/>
+      <ellipse rx="302" ry="115" transform="rotate(32)" stroke-opacity=".5" stroke-dasharray="3 8"/>
+      <path d="M-390 0H390M0-315V315" stroke-opacity=".2"/>
+      <g fill="#c7f8df" stroke="none"><circle cx="-176" cy="-91" r="7"/><circle cx="168" cy="172" r="7"/><circle cx="215" cy="-119" r="5"/></g>
+    </g>
+    <g font-family="sans-serif" font-size="13" letter-spacing="2" fill="#88a298"><text x="274" y="130">EXPLORE THE INVISIBLE.</text><text x="1085" y="150">INSPECTOR</text><text x="1085" y="214">NODE / ALPHA</text><text x="1085" y="276">CONNECTIONS</text><text x="1085" y="386">VISUAL FIELD</text><text x="282" y="795">X — Y — Z</text></g>
+    <g stroke="#5e9c89" fill="none"><path d="M1085 235h205M1085 298h205M1085 410h205"/><path d="m1085 500 24-35 22 12 28-69 28 20 31-12 43-32"/><rect x="1070" y="665" width="235" height="115" rx="4"/></g>
+    <text x="1095" y="710" fill="#c7ead9" font-family="sans-serif" font-size="16" letter-spacing="2">LESS NOISE.</text><text x="1095" y="744" fill="#c7ead9" font-family="sans-serif" font-size="16" letter-spacing="2">MORE MEANING.</text>
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+---
+import Arrow from './Arrow.astro';
+import type { LandingContent } from '../data/landing';
+import { mailto, type Publication } from '../data/validate';
+interface Props {
+  data: LandingContent['contact'];
+  labels: LandingContent['labels'];
+  publication: Publication;
+}
+const { data, labels, publication } = Astro.props;
+---
+
+<section
+  id="contact"
+  class="contact section-shell section-space"
+  aria-labelledby="contact-title"
+>
+  <div class="contact-orbit" aria-hidden="true"></div>
+  <p class="eyebrow">
+    <span class="status-dot"></span>
+    {data.eyebrow}
+  </p>
+  <h2 id="contact-title">
+    {data.title[0]}
+    <br />
+    <span>{data.title[1]}</span>
+  </h2>
+  <p class="section-intro line-breaks">{data.description}</p>
+  {publication.email ? (
+    <div class="contact-method">
+      <a
+        class="button button-primary"
+        href={mailto(publication.email, data.subject)}
+      >
+        {labels.email}
+        <Arrow diagonal />
+      </a>
+      <div class="email-row">
+        <a href={mailto(publication.email, data.subject)} class="email-address">
+          {publication.email}
+        </a>
+        <button
+          type="button"
+          class="copy-button"
+          data-copy={publication.email}
+          data-success={labels.copied}
+          data-failure={labels.copyError}
+          hidden
+        >
+          {labels.copy}
+        </button>
+      </div>
+      <p class="copy-status" data-copy-status role="status"></p>
+    </div>
+  ) : (
+    <p class="contact-preview">
+      <span class="tiny-label">{labels.preview}</span>
+      {data.preview}
+    </p>
+  )}
+  <a href="#privacy" class="contact-privacy">
+    {labels.privacy}
+    <Arrow diagonal />
+  </a>
+</section>

@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import type { LandingContent } from '../data/landing';
+interface Props {
+  data: LandingContent;
+}
+const { data } = Astro.props;
+const l = data.labels;
+---
+
+<div class="visual-track">
+  <div class="visual-sticky">
+    <div
+      class="core-stage"
+      data-stage
+      data-state="poster"
+      data-disabled={
+        import.meta.env.PUBLIC_DISABLE_3D === 'true' ? 'true' : 'false'
+      }
+      data-loading={l.loading}
+      data-interactive={l.interactive}
+      data-paused={l.paused}
+      data-reduced={l.reduced}
+      data-data-saving={l.dataSaving}
+      data-error={l.error}
+      data-budget={l.budget}
+      data-static-message={l.disabled}
+    >
+      <div class="core-grid" aria-hidden="true"></div>
+      <div class="core-axis axis-x" aria-hidden="true"></div>
+      <div class="core-axis axis-y" aria-hidden="true"></div>
+      <span class="core-coordinate coordinate-top mono" aria-hidden="true">
+        FIG. 001 — AETHER CORE
+      </span>
+      <span class="core-coordinate coordinate-right mono" aria-hidden="true">
+        FORM / LIGHT / MOTION
+      </span>
+      <div class="core-render" data-render>
+        <Image
+          src={data.hero.poster}
+          alt=""
+          widths={[480, 800, 1000]}
+          sizes="(max-width: 999px) 100vw, 58vw"
+          width={1000}
+          height={1000}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="core-poster"
+          data-poster
+        />
+      </div>
+      <div class="core-annotation" aria-hidden="true">
+        <span></span>
+        <p class="mono">
+          A LIVING STRUCTURE<small>12 FINS / 3 ORBITS / 1 IDEA</small>
+        </p>
+      </div>
+    </div>
+    <div class="experience-panel">
+      <p
+        class="experience-status mono"
+        data-experience-status
+        role="status"
+        aria-live="polite"
+      >
+        {l.initial}
+      </p>
+      <div class="experience-controls" data-controls hidden>
+        <button
+          type="button"
+          data-pause
+          data-pause-label={l.pause}
+          data-resume-label={l.resume}
+          aria-pressed="false"
+          hidden
+        >
+          {l.pause}
+        </button>
+        <button type="button" data-static hidden>
+          {l.static}
+        </button>
+        <button
+          type="button"
+          data-retry
+          data-retry-label={l.retry}
+          data-reload-label={l.reload}
+          hidden
+        >
+          {l.retry}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

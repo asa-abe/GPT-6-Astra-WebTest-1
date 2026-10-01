@@ -1,0 +1,72 @@
+---
+import type { LandingContent } from '../data/landing';
+import type { Publication } from '../data/validate';
+import '../styles/global.css';
+interface Props {
+  data: LandingContent;
+  publication: Publication;
+}
+const { data, publication } = Astro.props;
+const production = publication.mode === 'production';
+const canonical = publication.siteUrl
+  ? new URL('/', publication.siteUrl).href
+  : undefined;
+const schema =
+  canonical && production
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: data.brand,
+        url: canonical,
+        inLanguage: 'ja',
+        description: data.meta.description,
+      }
+    : null;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080b10" />
+    <meta name="color-scheme" content="dark" />
+    <title>{data.meta.title}</title>
+    <meta name="description" content={data.meta.description} />
+    <meta
+      name="robots"
+      content={production ? 'index, follow' : 'noindex, nofollow'}
+    />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={data.meta.title} />
+    <meta property="og:description" content={data.meta.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content={data.brand} />
+    <meta
+      property="og:image"
+      content={canonical ? new URL('/og.png', canonical).href : '/og.png'}
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="AETHER — Beyond the ordinary." />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {schema && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(schema).replace(/</g, '\\u003c')}
+      />
+    )}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      {data.labels.skip}
+    </a>
+    <slot />
+    <script>
+      import '../scripts/page';
+    </script>
+  </body>
+</html>

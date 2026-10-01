@@ -1,0 +1,43 @@
+---
+import type { LandingContent } from '../data/landing';
+interface Props {
+  data: LandingContent['process'];
+}
+const { data } = Astro.props;
+---
+
+<section
+  id="process"
+  class="process section-shell section-space"
+  aria-labelledby="process-title"
+>
+  <div class="process-intro">
+    <p class="eyebrow">{data.eyebrow}</p>
+    <h2 class="section-title line-breaks" id="process-title">
+      {data.title}
+    </h2>
+    <p class="section-intro line-breaks">{data.description}</p>
+    <div class="process-mark" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <p class="about-copy">{data.about}</p>
+  </div>
+  <ol class="process-steps">
+    {data.steps.map((step, index) => (
+      <li>
+        <span class="step-number mono">0{index + 1}</span>
+        <div>
+          <p class="tiny-label">{step.english}</p>
+          <h3>{step.title}</h3>
+          <p class="body-copy">{step.description}</p>
+        </div>
+        <span class="step-cross" aria-hidden="true">
+          +
+        </span>
+      </li>
+    ))}
+  </ol>
+</section>

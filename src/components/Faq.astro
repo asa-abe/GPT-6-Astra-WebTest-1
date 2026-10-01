@@ -1,0 +1,32 @@
+---
+import type { LandingContent } from '../data/landing';
+interface Props {
+  data: LandingContent['faq'];
+}
+const { data } = Astro.props;
+---
+
+<section
+  id="faq"
+  class="faq section-shell section-space"
+  aria-labelledby="faq-title"
+>
+  <div>
+    <p class="eyebrow">QUESTIONS & ANSWERS</p>
+    <h2 id="faq-title" class="section-title">
+      {data.title}
+    </h2>
+  </div>
+  <div class="faq-list">
+    {data.items.map((item, index) => (
+      <details id={item.id}>
+        <summary>
+          <span class="faq-number mono">0{index + 1}</span>
+          <span>{item.question}</span>
+          <span class="details-icon" aria-hidden="true"></span>
+        </summary>
+        <p>{item.answer}</p>
+      </details>
+    ))}
+  </div>
+</section>
